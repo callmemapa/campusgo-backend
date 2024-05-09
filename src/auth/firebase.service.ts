@@ -20,6 +20,7 @@ export class FirebaseService {
     try {
       const user = await this.firebaseAuth.getUserByEmail(authUser.email);
       const customToken = await this.firebaseAuth.createCustomToken(user.uid);
+      console.log(user.uid);
       return {
         statusCode: 200,
         message: 'Inicio de sesión exitoso!',
