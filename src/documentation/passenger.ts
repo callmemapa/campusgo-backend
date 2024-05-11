@@ -18,7 +18,7 @@ export const passengerResponse = {
     type: 'object',
     properties: {
       statusCode: { type: 'number', example: 200 },
-      id_driver: { type: 'string', example: 'CPtzC9zJv7TqsMmuFt4O' },
+      id_passenger: { type: 'string', example: 'CPtzC9zJv7TqsMmuFt4O' },
       message: { type: 'string', example: 'Pasajero creado exitosamente.' },
     },
   },

@@ -18,7 +18,7 @@ export class RouteController {
   @ApiResponse(routeResponse)
   @ApiResponse(routeResponseFailed)
   @ApiOperation({ summary: 'Creación de ruta' })
-  postVehicle(@Body() route: RouteDto): object {
+  postRoute(@Body() route: RouteDto): object {
     return this.routeService.createRoute(
       route.id_driver,
       route.date,

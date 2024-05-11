@@ -10,6 +10,8 @@ import { VehicleController } from './vehicle/vehicle.controller';
 import { VehicleService } from './vehicle/vehicle.service';
 import { RouteService } from './route/route.service';
 import { RouteController } from './route/route.controller';
+import { ReservationController } from './reservation/reservation.controller';
+import { ReservationService } from './reservation/reservation.service';
 
 @Module({
   imports: [JwtModule.register({})],
@@ -20,7 +22,14 @@ import { RouteController } from './route/route.controller';
     PassengerController,
     VehicleController,
     RouteController,
+    ReservationController,
   ],
-  providers: [AppService, FirebaseService, VehicleService, RouteService],
+  providers: [
+    AppService,
+    FirebaseService,
+    VehicleService,
+    RouteService,
+    ReservationService,
+  ],
 })
 export class AppModule {}

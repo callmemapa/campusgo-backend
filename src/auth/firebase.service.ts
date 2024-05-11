@@ -111,7 +111,7 @@ export class FirebaseService {
       );
       return {
         statusCode: 200,
-        id_driver: passengerRef.id,
+        id_passenger: passengerRef.id,
         message: 'Pasajero creado exitosamente.',
       };
     } catch (error) {
