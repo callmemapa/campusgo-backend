@@ -1,9 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { FirebaseModule } from './firebase.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  FirebaseModule.initializeApp();
   app.enableCors();
   const options = new DocumentBuilder()
     .setTitle('CampusGo! API')

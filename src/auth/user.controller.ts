@@ -1,12 +1,12 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { FirebaseService } from './firebase.service';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { UserDto } from 'src/models/user.dto';
 import {
   signUpBody,
   signUpResponse,
   signUpResponseFailed,
 } from 'src/documentation/signup';
-import { UserDto } from 'src/models/user.dto';
 
 @ApiTags('auth')
 @Controller('api/auth')

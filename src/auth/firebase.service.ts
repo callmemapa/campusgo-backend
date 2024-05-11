@@ -1,17 +1,14 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { firebaseConfig } from '../config/configFirebase';
 import * as admin from 'firebase-admin';
 import { ReviewDto } from 'src/models/review.dto';
+import { FirebaseModule } from 'src/firebase.module';
 
 @Injectable()
 export class FirebaseService {
   private firebaseAuth: admin.auth.Auth;
 
   constructor() {
-    admin.initializeApp({
-      credential: admin.credential.cert(firebaseConfig as admin.ServiceAccount),
-      databaseURL: `https://${firebaseConfig.project_id}.firebaseio.com`,
-    });
+    FirebaseModule.initializeApp();
     this.firebaseAuth = admin.auth();
   }
 
@@ -119,7 +116,7 @@ export class FirebaseService {
       };
     } catch (error) {
       throw new HttpException(
-        'Hubo un problema al crear al pasajero',
+        'Hubo un problema al crear el pasajero',
         HttpStatus.BAD_REQUEST,
       );
     }
