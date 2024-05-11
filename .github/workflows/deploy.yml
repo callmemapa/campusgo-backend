@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install dependences
+        run: npm install
       - name: Install nestjs CLI
         run: npm install -global @nestjs/cli
       - name: Install Vercel CLI
