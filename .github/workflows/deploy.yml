@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install nestjs CLI
+        run: npm install -global @nestjs/cli
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Pull Vercel Environment Information
@@ -18,4 +20,4 @@ jobs:
       - name: Build Project
         run: npm run build
       - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy ./dist --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
