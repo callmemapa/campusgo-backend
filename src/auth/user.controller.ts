@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { FirebaseService } from './firebase.service';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UserDto } from 'src/models/user.dto';
@@ -30,5 +30,11 @@ export class UserController {
       user.address,
       user.url_profile_photo,
     );
+  }
+
+  @Get('readUser/:uid')
+  async getUser(@Param('uid') uid: string): Promise<object> {
+    const user = await this.firebaseService.readUser(uid);
+    return user;
   }
 }

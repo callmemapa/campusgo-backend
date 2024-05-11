@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { ReservationService } from './reservation.service';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ReservationDto } from 'src/models/reservation.dto';
@@ -28,5 +28,11 @@ export class ReservationController {
       reservation.fare,
       reservation.seats_to_reserve,
     );
+  }
+
+  @Get('readReservation/:id')
+  async getDriver(@Param('id') id: string): Promise<object> {
+    const user = await this.reservationService.readReservation(id);
+    return user;
   }
 }

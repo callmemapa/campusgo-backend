@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { VehicleService } from './vehicle.service';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { VehicleDto } from 'src/models/vehicle.dto';
@@ -28,5 +28,11 @@ export class VehicleController {
       vehicle.type_vehicle,
       vehicle.year,
     );
+  }
+
+  @Get('readVehicle/:id')
+  async getVehicle(@Param('id') id: string): Promise<object> {
+    const user = await this.vehicleService.getVehicle(id);
+    return user;
   }
 }

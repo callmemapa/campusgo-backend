@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { FirebaseService } from './firebase.service';
 import { ApiBody, ApiResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PassengerDto } from 'src/models/passenger.dto';
@@ -20,5 +20,11 @@ export class PassengerController {
   @ApiOperation({ summary: 'Creación de pasajero' })
   postPassenger(@Body() passenger: PassengerDto): object {
     return this.firebaseService.createPassenger(passenger.uid, 0);
+  }
+
+  @Get('readPassenger/:id')
+  async getPassenger(@Param('id') id: string): Promise<object> {
+    const user = await this.firebaseService.readPassenger(id);
+    return user;
   }
 }

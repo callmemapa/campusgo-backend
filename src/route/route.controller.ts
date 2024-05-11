@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { RouteService } from './route.service';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { RouteDto } from 'src/models/route.dto';
@@ -34,5 +34,11 @@ export class RouteController {
       route.seating_capacity,
       route.waypoints,
     );
+  }
+
+  @Get('readRoute/:id')
+  async getDriver(@Param('id') id: string): Promise<object> {
+    const user = await this.routeService.readRoute(id);
+    return user;
   }
 }

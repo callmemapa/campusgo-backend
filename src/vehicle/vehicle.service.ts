@@ -44,4 +44,29 @@ export class VehicleService {
       );
     }
   }
+
+  async getVehicle(id_vehicle: string): Promise<object> {
+    try {
+      const docRef = admin.firestore().collection('vehicles').doc(id_vehicle);
+      const snapshot = await docRef.get();
+
+      if (snapshot.exists) {
+        return {
+          id: snapshot.id,
+          data: snapshot.data(),
+        };
+      } else {
+        throw new HttpException(
+          'El vehiculo no fue encontrado',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+    } catch (error) {
+      throw new HttpException(
+        'Error al intentar leer el vehiculo',
+        HttpStatus.BAD_REQUEST,
+        error.message,
+      );
+    }
+  }
 }

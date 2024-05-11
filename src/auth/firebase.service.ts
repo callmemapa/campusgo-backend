@@ -121,4 +121,82 @@ export class FirebaseService {
       );
     }
   }
+
+  async readUser(uid: string): Promise<object> {
+    try {
+      const docRef = admin.firestore().collection('users').doc(uid);
+      const snapshot = await docRef.get();
+
+      if (snapshot.exists) {
+        return {
+          id: snapshot.id,
+          data: snapshot.data(),
+        };
+      } else {
+        throw new HttpException(
+          'El usuario no fue encontrado',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+    } catch (error) {
+      throw new HttpException(
+        'Error al intentar leer al usuario',
+        HttpStatus.BAD_REQUEST,
+        error.message,
+      );
+    }
+  }
+
+  async readDriver(id_driver: string): Promise<object> {
+    try {
+      const docRef = admin.firestore().collection('drivers').doc(id_driver);
+      const snapshot = await docRef.get();
+
+      if (snapshot.exists) {
+        return {
+          id: snapshot.id,
+          data: snapshot.data(),
+        };
+      } else {
+        throw new HttpException(
+          'El conductor no fue encontrado',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+    } catch (error) {
+      throw new HttpException(
+        'Error al intentar leer al conductor',
+        HttpStatus.BAD_REQUEST,
+        error.message,
+      );
+    }
+  }
+
+  async readPassenger(id_passenger: string): Promise<object> {
+    try {
+      const docRef = admin
+        .firestore()
+        .collection('passengers')
+        .doc(id_passenger);
+      const snapshot = await docRef.get();
+
+      if (snapshot.exists) {
+        return {
+          id: snapshot.id,
+          data: snapshot.data(),
+        };
+      } else {
+        throw new HttpException(
+          'El pasajero no fue encontrado',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+    } catch (error) {
+      throw new HttpException(
+        'Error al intentar leer al pasajero',
+        HttpStatus.BAD_REQUEST,
+        error.message,
+      );
+    }
+  }
 }

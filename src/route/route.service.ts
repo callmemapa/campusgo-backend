@@ -52,4 +52,29 @@ export class RouteService {
       );
     }
   }
+
+  async readRoute(id_route: string): Promise<object> {
+    try {
+      const docRef = admin.firestore().collection('routes').doc(id_route);
+      const snapshot = await docRef.get();
+
+      if (snapshot.exists) {
+        return {
+          id: snapshot.id,
+          data: snapshot.data(),
+        };
+      } else {
+        throw new HttpException(
+          'La ruta no fue encontrada',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+    } catch (error) {
+      throw new HttpException(
+        'Error al intentar leer la ruta',
+        HttpStatus.BAD_REQUEST,
+        error.message,
+      );
+    }
+  }
 }

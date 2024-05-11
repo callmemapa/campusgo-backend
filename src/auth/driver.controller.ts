@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { FirebaseService } from './firebase.service';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { DriverDto } from 'src/models/driver.dto';
@@ -25,5 +25,11 @@ export class DriverController {
       [],
       0,
     );
+  }
+
+  @Get('readDriver/:id')
+  async getDriver(@Param('id') id: string): Promise<object> {
+    const user = await this.firebaseService.readDriver(id);
+    return user;
   }
 }

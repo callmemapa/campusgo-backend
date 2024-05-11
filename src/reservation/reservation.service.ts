@@ -47,4 +47,32 @@ export class ReservationService {
       );
     }
   }
+
+  async readReservation(id_reservation: string): Promise<object> {
+    try {
+      const docRef = admin
+        .firestore()
+        .collection('reservations')
+        .doc(id_reservation);
+      const snapshot = await docRef.get();
+
+      if (snapshot.exists) {
+        return {
+          id: snapshot.id,
+          data: snapshot.data(),
+        };
+      } else {
+        throw new HttpException(
+          'La reserva no fue encontrada',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+    } catch (error) {
+      throw new HttpException(
+        'Error al intentar leer la reserva',
+        HttpStatus.BAD_REQUEST,
+        error.message,
+      );
+    }
+  }
 }
