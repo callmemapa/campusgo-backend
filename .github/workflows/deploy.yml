@@ -17,5 +17,5 @@ jobs:
         run: npm install -g vercel
 
       - name: Deploy to Vercel
-        run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --force vercel.com/maria-paula-mosquera-rengifos-projects/campusgo-backend
+        run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --force ~/maria-paula-mosquera-rengifos-projects/campusgo-backend/
 
