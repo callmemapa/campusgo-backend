@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -14,7 +15,12 @@ import { ReservationController } from './reservation/reservation.controller';
 import { ReservationService } from './reservation/reservation.service';
 
 @Module({
-  imports: [JwtModule.register({})],
+  imports: [
+    JwtModule.register({}),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+  ],
   controllers: [
     AppController,
     UserController,

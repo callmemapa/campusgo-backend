@@ -2,6 +2,7 @@ name: Deploy to Vercel
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
 on:
   push:
     branches:
@@ -13,10 +14,12 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install dependences
         run: npm install
-      - name: Install nestjs CLI
+      - name: Install Nestjs CLI
         run: npm install -global @nestjs/cli
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
+      - name: Decode ENVIRONMENT variable
+        run: echo "${{ env.ENVIRONMENT }}" | base64 -d > .env
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project
