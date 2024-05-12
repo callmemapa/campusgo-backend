@@ -5,8 +5,10 @@ import { FirebaseModule } from './firebase.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  FirebaseModule.initializeApp();
   app.enableCors();
+
+  FirebaseModule.initializeApp();
+
   const options = new DocumentBuilder()
     .setTitle('CampusGo! API')
     .setDescription('API para sistema de transporte universitario.')
