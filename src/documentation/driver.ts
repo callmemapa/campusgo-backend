@@ -39,3 +39,43 @@ export const driverResponseFailed = {
     },
   },
 };
+
+export const docGetDriver = {
+  status: 200,
+  description: 'Traer la información de un conductor por ID',
+  schema: {
+    type: 'object',
+    properties: {
+      id: { type: 'string', example: 'nays8PlHMEp43XGgQkzw' },
+      data: {
+        type: 'object',
+        properties: {
+          reviews: { type: 'array', items: { type: 'object' }, example: [] },
+          trips_completed: { type: 'number', example: 0 },
+          id_vehicle: {
+            type: 'object',
+            properties: {
+              _firestore: {
+                type: 'object',
+                properties: {
+                  projectId: { type: 'string', example: 'campusgo-dd61b' },
+                },
+              },
+              _path: {
+                type: 'object',
+                properties: {
+                  segments: {
+                    type: 'array',
+                    items: { type: 'string', example: 'vehicles' },
+                  },
+                },
+              },
+              _converter: { type: 'object' },
+            },
+          },
+        },
+      },
+    },
+  },
+};
+

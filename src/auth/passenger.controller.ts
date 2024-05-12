@@ -6,6 +6,7 @@ import {
   passengerBody,
   passengerResponse,
   passengerResponseFailed,
+  docGetPassenger,
 } from 'src/documentation/passenger';
 
 @ApiTags('auth')
@@ -23,6 +24,8 @@ export class PassengerController {
   }
 
   @Get('readPassenger/:id')
+  @ApiResponse(docGetPassenger)
+  @ApiOperation({ summary: 'Traer la información de un pasajero por ID' })
   async getPassenger(@Param('id') id: string): Promise<object> {
     const user = await this.firebaseService.readPassenger(id);
     return user;

@@ -3,6 +3,7 @@ import { ReservationService } from './reservation.service';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ReservationDto } from 'src/models/reservation.dto';
 import {
+  docGetReservation,
   reservationBody,
   reservationResponse,
   reservationResponseFailed,
@@ -31,6 +32,8 @@ export class ReservationController {
   }
 
   @Get('readReservation/:id')
+  @ApiResponse(docGetReservation)
+  @ApiOperation({ summary: 'Traer la información de una reserva por ID' })
   async getDriver(@Param('id') id: string): Promise<object> {
     const user = await this.reservationService.readReservation(id);
     return user;

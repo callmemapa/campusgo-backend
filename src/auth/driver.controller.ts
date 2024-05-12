@@ -6,6 +6,7 @@ import {
   driverBody,
   driverResponse,
   driverResponseFailed,
+  docGetDriver
 } from 'src/documentation/driver';
 
 @ApiTags('auth')
@@ -28,6 +29,8 @@ export class DriverController {
   }
 
   @Get('readDriver/:id')
+  @ApiOperation({ summary: 'Traer la información de un conductor por ID' })
+  @ApiResponse(docGetDriver)
   async getDriver(@Param('id') id: string): Promise<object> {
     const user = await this.firebaseService.readDriver(id);
     return user;

@@ -22,6 +22,7 @@ export class RouteService {
     price: number,
     seating_capacity: number,
     waypoints: Array<string>,
+    isComplete: boolean,
   ): Promise<object> {
     try {
       const driverRef = admin.firestore().collection('drivers').doc(id_driver);
@@ -39,6 +40,7 @@ export class RouteService {
         price,
         seating_capacity,
         waypoints,
+        isComplete
       });
       return {
         statusCode: 200,

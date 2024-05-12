@@ -44,3 +44,25 @@ export const vehicleResponseFailed = {
     },
   },
 };
+
+export const docGetVehicle = {
+  status: 200,
+  description: 'Traer la información de un vehículo por ID',
+  schema: {
+    type: 'object',
+    properties: {
+      id: { type: 'string', example: 'Z9L3DjDJd9FRMPLhqTLn' },
+      data: {
+        type: 'object',
+        properties: {
+          color: { type: 'string', example: 'negro' },
+          year: { type: 'number', example: 2015 },
+          model: { type: 'string', example: 'sail' },
+          plate_number: { type: 'string', example: 'ABC123' },
+          type_vehicle: { type: 'string', example: 'carro' },
+          make: { type: 'string', example: 'chevrolet' },
+        },
+      },
+    },
+  },
+};

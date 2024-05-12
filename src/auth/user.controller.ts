@@ -6,6 +6,7 @@ import {
   signUpBody,
   signUpResponse,
   signUpResponseFailed,
+  docGetUser,
 } from 'src/documentation/signup';
 
 @ApiTags('auth')
@@ -33,6 +34,8 @@ export class UserController {
   }
 
   @Get('readUser/:uid')
+  @ApiOperation({ summary: 'Traer la información de un usuario por su UID' })
+  @ApiResponse(docGetUser)
   async getUser(@Param('uid') uid: string): Promise<object> {
     const user = await this.firebaseService.readUser(uid);
     return user;

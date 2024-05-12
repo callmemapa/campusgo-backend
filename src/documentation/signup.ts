@@ -45,3 +45,71 @@ export const signUpResponseFailed = {
     },
   },
 };
+
+export const docGetUser = {
+  status: 200,
+  description: 'Traer la información de un usuario por UID',
+  schema: {
+    type: 'object',
+    properties: {
+      id: { type: 'string', example: 'IhqwFXnXdWP2msj2vr2tbRSVTD22' },
+      data: {
+        type: 'object',
+        properties: {
+          url_profile_photo: { type: 'string', example: 'none' },
+          document_number: { type: 'number', example: 123456789 },
+          address: { type: 'string', example: 'CALLE 13 # 73 - 42' },
+          last_name: { type: 'string', example: 'Perez' },
+          phone_number: { type: 'string', example: '+5731100044444' },
+          first_name: { type: 'string', example: 'Pepito' },
+          email: { type: 'string', example: 'pepito.perez@correounivalle.edu.co' },
+          document_type: { type: 'string', example: 'CC' },
+          isDriver: { type: 'boolean', example: true },
+          id_driver: {
+            type: 'object',
+            properties: {
+              _firestore: {
+                type: 'object',
+                properties: {
+                  projectId: { type: 'string', example: 'campusgo-dd61b' },
+                },
+              },
+              _path: {
+                type: 'object',
+                properties: {
+                  segments: {
+                    type: 'array',
+                    items: { type: 'string', example: 'drivers' },
+                  },
+                },
+              },
+              _converter: { type: 'object' },
+            },
+          },
+          isPassenger: { type: 'boolean', example: true },
+          id_passenger: {
+            type: 'object',
+            properties: {
+              _firestore: {
+                type: 'object',
+                properties: {
+                  projectId: { type: 'string', example: 'campusgo-dd61b' },
+                },
+              },
+              _path: {
+                type: 'object',
+                properties: {
+                  segments: {
+                    type: 'array',
+                    items: { type: 'string', example: 'passengers' },
+                  },
+                },
+              },
+              _converter: { type: 'object' },
+            },
+          },
+        },
+      },
+    },
+  },
+};

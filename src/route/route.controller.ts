@@ -6,6 +6,7 @@ import {
   routeBody,
   routeResponse,
   routeResponseFailed,
+  docGetRoute,
 } from 'src/documentation/route';
 
 @ApiTags('route')
@@ -33,10 +34,13 @@ export class RouteController {
       route.price,
       route.seating_capacity,
       route.waypoints,
+      false,
     );
   }
 
   @Get('readRoute/:id')
+  @ApiResponse(docGetRoute)
+  @ApiOperation({ summary: 'Traer la información de una ruta por ID' })
   async getDriver(@Param('id') id: string): Promise<object> {
     const user = await this.routeService.readRoute(id);
     return user;

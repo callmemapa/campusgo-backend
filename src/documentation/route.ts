@@ -50,3 +50,56 @@ export const routeResponseFailed = {
     },
   },
 };
+
+export const docGetRoute = {
+  status: 200,
+  description: 'Traer la información de una ruta por ID',
+  schema: {
+    type: 'object',
+    properties: {
+      id: { type: 'string', example: 'o3nT5H0eJHpZxC86ABj6' },
+      data: {
+        type: 'object',
+        properties: {
+          date: { type: 'string', example: '11 de mayo de 2024, 8:00:00 a.m. UTC-5' },
+          distance: { type: 'string', example: '13km' },
+          origin: { type: 'string', example: 'Lopez pan' },
+          destination: { type: 'string', example: 'Universidad del Valle' },
+          waypoints: {
+            type: 'array',
+            items: { type: 'string', example: 'Autopista suroriental' },
+          },
+          longitude_destination: { type: 'number', example: -76.298088 },
+          latitude_origin: { type: 'number', example: 3.45407 },
+          seating_capacity: { type: 'number', example: 4 },
+          longitude_origin: { type: 'number', example: -76.48188 },
+          estimate_time: { type: 'string', example: '33min' },
+          price: { type: 'number', example: 3000 },
+          latitude_destination: { type: 'number', example: 3.55098 },
+          id_driver: {
+            type: 'object',
+            properties: {
+              _firestore: {
+                type: 'object',
+                properties: {
+                  projectId: { type: 'string', example: 'campusgo-dd61b' },
+                },
+              },
+              _path: {
+                type: 'object',
+                properties: {
+                  segments: {
+                    type: 'array',
+                    items: { type: 'string', example: 'drivers' },
+                  },
+                },
+              },
+              _converter: { type: 'object' },
+            },
+          },
+          isComplete: { type: 'boolean', example: false },
+        },
+      },
+    },
+  },
+};

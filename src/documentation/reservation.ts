@@ -39,3 +39,66 @@ export const reservationResponseFailed = {
     },
   },
 };
+
+export const docGetReservation = {
+  status: 200,
+  description: 'Traer la información de una reserva por ID',
+  schema: {
+    type: 'object',
+    properties: {
+      id: { type: 'string', example: 'fGvWVnRY6hevBguxYrAa' },
+      data: {
+        type: 'object',
+        properties: {
+          reservation_status: { type: 'string', example: 'pending' },
+          id_passenger: {
+            type: 'object',
+            properties: {
+              _firestore: {
+                type: 'object',
+                properties: {
+                  projectId: { type: 'string', example: 'campusgo-dd61b' },
+                },
+              },
+              _path: {
+                type: 'object',
+                properties: {
+                  segments: {
+                    type: 'array',
+                    items: { type: 'string', example: 'passengers' },
+                  },
+                },
+              },
+              _converter: { type: 'object' },
+            },
+          },
+          id_route: {
+            type: 'object',
+            properties: {
+              _firestore: {
+                type: 'object',
+                properties: {
+                  projectId: { type: 'string', example: 'campusgo-dd61b' },
+                },
+              },
+              _path: {
+                type: 'object',
+                properties: {
+                  segments: {
+                    type: 'array',
+                    items: { type: 'string', example: 'routes' },
+                  },
+                },
+              },
+              _converter: { type: 'object' },
+            },
+          },
+          seats_to_reserve: { type: 'number', example: 2 },
+          pick_up_point: { type: 'string', example: 'Comfandi del prado' },
+          payment_method: { type: 'string', example: 'efectivo' },
+          fare: { type: 'number', example: 6000 },
+        },
+      },
+    },
+  },
+};

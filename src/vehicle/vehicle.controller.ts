@@ -6,6 +6,7 @@ import {
   vehicleBody,
   vehicleResponse,
   vehicleResponseFailed,
+  docGetVehicle,
 } from 'src/documentation/vehicle';
 
 @ApiTags('vehicle')
@@ -31,6 +32,8 @@ export class VehicleController {
   }
 
   @Get('readVehicle/:id')
+  @ApiResponse(docGetVehicle)
+  @ApiOperation({ summary: 'Traer la información de un vehículo por ID' })
   async getVehicle(@Param('id') id: string): Promise<object> {
     const user = await this.vehicleService.getVehicle(id);
     return user;

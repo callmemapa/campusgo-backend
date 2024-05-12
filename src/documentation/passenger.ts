@@ -38,3 +38,20 @@ export const passengerResponseFailed = {
     },
   },
 };
+
+export const docGetPassenger = {
+  status: 200,
+  description: 'Traer la información de un pasajero por ID',
+  schema: {
+    type: 'object',
+    properties: {
+      id: { type: 'string', example: 'apIspnAkD8WY0Zf4BCpJ' },
+      data: {
+        type: 'object',
+        properties: {
+          number_of_trips: { type: 'number', example: 0 },
+        },
+      },
+    },
+  },
+};
