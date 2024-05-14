@@ -6,7 +6,7 @@ import {
   driverBody,
   driverResponse,
   driverResponseFailed,
-  docGetDriver
+  docGetDriver,
 } from 'src/documentation/driver';
 
 @ApiTags('auth')
@@ -20,12 +20,7 @@ export class DriverController {
   @ApiResponse(driverResponseFailed)
   @ApiOperation({ summary: 'Creación de conductor' })
   postDriver(@Body() driver: DriverDto): object {
-    return this.firebaseService.createDriver(
-      driver.uid,
-      driver.id_vehicle,
-      [],
-      0,
-    );
+    return this.firebaseService.createDriver(driver.uid, [], 0);
   }
 
   @Get('readDriver/:id')

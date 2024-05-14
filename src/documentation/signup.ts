@@ -11,6 +11,9 @@ export const signUpBody = {
         type: 'passenger',
         document_type: 'CC',
         id_user: 123456789,
+        phone_number: '+5731100044444',
+        address: 'CALLE 13 # 73 - 42',
+        url_profile_photo: 'none',
       },
       summary: 'Ejemplo de creación de usuario nuevo',
     },
@@ -62,7 +65,10 @@ export const docGetUser = {
           last_name: { type: 'string', example: 'Perez' },
           phone_number: { type: 'string', example: '+5731100044444' },
           first_name: { type: 'string', example: 'Pepito' },
-          email: { type: 'string', example: 'pepito.perez@correounivalle.edu.co' },
+          email: {
+            type: 'string',
+            example: 'pepito.perez@correounivalle.edu.co',
+          },
           document_type: { type: 'string', example: 'CC' },
           isDriver: { type: 'boolean', example: true },
           id_driver: {

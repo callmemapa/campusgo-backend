@@ -60,17 +60,12 @@ export class FirebaseService {
 
   async createDriver(
     uid: string,
-    id_vehicle: string,
     reviews: Array<ReviewDto>,
     trips_completed: number,
   ): Promise<object> {
     try {
-      const vehicleRef = admin
-        .firestore()
-        .collection('vehicles')
-        .doc(id_vehicle);
       const driverRef = await admin.firestore().collection('drivers').add({
-        id_vehicle: vehicleRef,
+        id_vehicle: '',
         reviews,
         trips_completed,
       });

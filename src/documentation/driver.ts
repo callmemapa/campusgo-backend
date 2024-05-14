@@ -5,7 +5,6 @@ export const driverBody = {
     example: {
       value: {
         uid: 'OkTs1Gkm0LX1m2mLAEsx97bGXZw1',
-        id_vehicle: 'iMe9H6FrvoWXXKj6fR8K',
       },
       summary: 'Ejemplo de creación de conductor nuevo',
     },
@@ -78,4 +77,3 @@ export const docGetDriver = {
     },
   },
 };
-
