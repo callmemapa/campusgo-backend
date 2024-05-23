@@ -8,6 +8,7 @@ import {
   signUpResponseFailed,
   docGetUser,
 } from 'src/documentation/signup';
+import { LoginDto } from 'src/models/login.dto';
 
 @ApiTags('auth')
 @Controller('api/auth')
@@ -40,4 +41,15 @@ export class UserController {
     const user = await this.firebaseService.readUser(uid);
     return user;
   }
+
+  @Post('login')
+  @ApiOperation({ summary: 'Login de usuario' })
+  @ApiResponse(signUpResponse)
+  @ApiResponse(signUpResponseFailed)
+  login(@Body() user: LoginDto): object {
+    return this.firebaseService.login(
+      user.email,
+      user.password,
+    );
+  }
 }

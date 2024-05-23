@@ -2,6 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import * as admin from 'firebase-admin';
 import { ReviewDto } from 'src/models/review.dto';
 import { FirebaseModule } from 'src/firebase.module';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 @Injectable()
 export class FirebaseService {
@@ -11,6 +12,17 @@ export class FirebaseService {
     FirebaseModule.initializeApp();
     this.firebaseAuth = admin.auth();
   }
+
+  async login(email: string, password: string): Promise<string | undefined> {
+    FirebaseModule.initializeApp();
+    try {
+      const userCredential = await signInWithEmailAndPassword(getAuth(), email, password);
+      const idToken = await userCredential.user.getIdToken();
+      return idToken;
+    } catch (error) {
+      throw new Error('Error de autenticación');
+    }
+  }
 
   async createUser(
     document_type: string,
