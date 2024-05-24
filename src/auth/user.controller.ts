@@ -42,14 +42,13 @@ export class UserController {
     return user;
   }
 
-  @Post('login')
+  @Post('verifyToken')
   @ApiOperation({ summary: 'Login de usuario' })
   @ApiResponse(signUpResponse)
   @ApiResponse(signUpResponseFailed)
-  login(@Body() user: LoginDto): object {
-    return this.firebaseService.login(
-      user.email,
-      user.password,
-    );
-  }
+  verifyIdToken(@Body() user: LoginDto): object {
+    console.log(user.idToken)
+    return this.firebaseService.verifyIdToken(user.idToken
+    );
+  }
 }
