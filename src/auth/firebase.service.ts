@@ -2,6 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import * as admin from 'firebase-admin';
 import { ReviewDto } from 'src/models/review.dto';
 import { FirebaseModule } from 'src/firebase.module';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 @Injectable()
 export class FirebaseService {
@@ -55,6 +56,26 @@ export class FirebaseService {
           HttpStatus.FORBIDDEN,
         );
       }
+    }
+  }
+
+  async verifyIdToken(idToken: string): Promise<any> {
+    try {
+      const decodedToken = await admin.auth().verifyIdToken(idToken);
+      return { uid: decodedToken.uid, email: decodedToken.email };
+    } catch (error) {
+      let errorMessage = 'Falló la verificacion del token';
+      if (error.code === 'auth/id-token-expired') {
+        errorMessage = 'ID token has expired';
+      } else if (error.code === 'auth/argument-error') {
+        errorMessage = 'ID token must be a non-empty string';
+      } else if (error.code === 'auth/invalid-id-token') {
+        errorMessage = 'ID token is invalid';
+      } else if (error.code === 'auth/internal-error') {
+        errorMessage = 'An internal error occurred while verifying the ID token';
+      }
+      console.error('Error verifying token:', error.code, error.message);
+      throw new Error(errorMessage);
     }
   }
 

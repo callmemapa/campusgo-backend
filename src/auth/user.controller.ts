@@ -14,6 +14,7 @@ import {
   getAllUsersResponseFailed
 
 } from 'src/documentation/signup';
+import { LoginDto } from 'src/models/login.dto';
 
 @ApiTags('auth')
 @Controller('api/auth')
@@ -46,6 +47,17 @@ export class UserController {
     const user = await this.firebaseService.readUser(uid);
     return user;
   }
+
+  @Post('verifyToken')
+  @ApiOperation({ summary: 'Login de usuario' })
+  @ApiResponse(signUpResponse)
+  @ApiResponse(signUpResponseFailed)
+  verifyIdToken(@Body() user: LoginDto): object {
+    console.log(user.idToken)
+    return this.firebaseService.verifyIdToken(user.idToken
+    );
+  }
+}
 
   @Get('getAllUsers')
   @ApiOperation({ summary: 'Obtener la información de todos los usuarios' })
