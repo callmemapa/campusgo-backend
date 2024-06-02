@@ -57,7 +57,6 @@ export class UserController {
     return this.firebaseService.verifyIdToken(user.idToken
     );
   }
-}
 
   @Get('getAllUsers')
   @ApiOperation({ summary: 'Obtener la información de todos los usuarios' })
