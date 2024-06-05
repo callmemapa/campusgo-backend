@@ -110,7 +110,10 @@ export const getAllReservationsResponse = {
     type: 'object',
     properties: {
       statusCode: { type: 'number', example: 200 },
-      message: { type: 'string', example: 'Reservas recuperadas exitosamente.' },
+      message: {
+        type: 'string',
+        example: 'Reservas recuperadas exitosamente.',
+      },
       data: {
         type: 'array',
         items: {
@@ -120,10 +123,19 @@ export const getAllReservationsResponse = {
             data: {
               type: 'object',
               properties: {
-                id_passenger: { type: 'string', example: 'eJphRYmHNt3vwYCM4Q7a' },
+                id_passenger: {
+                  type: 'string',
+                  example: 'eJphRYmHNt3vwYCM4Q7a',
+                },
                 id_route: { type: 'string', example: 'bTGQkP4Jt8WdG7ZvFZpL' },
-                payment_method: { type: 'string', example: 'tarjeta de crédito' },
-                pick_up_point: { type: 'string', example: 'Avenida Siempre Viva' },
+                payment_method: {
+                  type: 'string',
+                  example: 'tarjeta de crédito',
+                },
+                pick_up_point: {
+                  type: 'string',
+                  example: 'Avenida Siempre Viva',
+                },
                 reservation_status: { type: 'string', example: 'confirmada' },
                 fare: { type: 'number', example: 2500 },
                 seats_to_reserve: { type: 'number', example: 2 },

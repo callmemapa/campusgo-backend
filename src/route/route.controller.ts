@@ -1,4 +1,13 @@
-import { Controller, Post, Body, Get, Put, Param, HttpException, HttpStatus} from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Put,
+  Param,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { RouteService } from './route.service';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { RouteDto } from 'src/models/route.dto';
@@ -11,7 +20,7 @@ import {
   getAllRoutesResponseFailed,
   updateRouteBody,
   updateRouteResponse,
-  updateRouteResponseFailed
+  updateRouteResponseFailed,
 } from 'src/documentation/route';
 
 @ApiTags('route')
@@ -58,21 +67,22 @@ export class RouteController {
   @ApiResponse(updateRouteResponseFailed)
   async updateRoute(
     @Param('id_route') id_route: string,
-    @Body() updateData: {
-      id_driver?: string,
-      date?: Date,
-      origin?: string,
-      destination?: string,
-      latitude_origin?: number,
-      longitude_origin?: number,
-      latitude_destination?: number,
-      longitude_destination?: number,
-      distance?: string,
-      estimate_time?: string,
-      price?: number,
-      seating_capacity?: number,
-      waypoints?: Array<string>,
-      isComplete?: boolean,
+    @Body()
+    updateData: {
+      id_driver?: string;
+      date?: Date;
+      origin?: string;
+      destination?: string;
+      latitude_origin?: number;
+      longitude_origin?: number;
+      latitude_destination?: number;
+      longitude_destination?: number;
+      distance?: string;
+      estimate_time?: string;
+      price?: number;
+      seating_capacity?: number;
+      waypoints?: Array<string>;
+      isComplete?: boolean;
     },
   ): Promise<object> {
     try {

@@ -12,5 +12,5 @@ export interface RouteDto {
   price: number;
   seating_capacity: number;
   waypoints: Array<string>;
-  isComplete: boolean,
+  isComplete: boolean;
 }

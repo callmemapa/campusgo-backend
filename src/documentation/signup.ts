@@ -138,7 +138,10 @@ export const updateUserResponse = {
           email: { type: 'string', example: 'juan.perez@example.com' },
           phone_number: { type: 'string', example: '3001234567' },
           address: { type: 'string', example: 'Calle 123 #45-67' },
-          url_profile_photo: { type: 'string', example: 'http://example.com/photo.jpg' },
+          url_profile_photo: {
+            type: 'string',
+            example: 'http://example.com/photo.jpg',
+          },
         },
       },
     },
@@ -172,7 +175,10 @@ export const updateUserResponseFailed = {
     type: 'object',
     properties: {
       statusCode: { type: 'number', example: 400 },
-      message: { type: 'string', example: 'Hubo un problema al actualizar el usuario.' },
+      message: {
+        type: 'string',
+        example: 'Hubo un problema al actualizar el usuario.',
+      },
     },
   },
 };
@@ -184,7 +190,10 @@ export const getAllUsersResponse = {
     type: 'object',
     properties: {
       statusCode: { type: 'number', example: 200 },
-      message: { type: 'string', example: 'Usuarios recuperados exitosamente.' },
+      message: {
+        type: 'string',
+        example: 'Usuarios recuperados exitosamente.',
+      },
       data: {
         type: 'array',
         items: {
@@ -201,7 +210,10 @@ export const getAllUsersResponse = {
                 document_number: { type: 'number', example: 123456789 },
                 phone_number: { type: 'string', example: '+573001234567' },
                 address: { type: 'string', example: 'Calle 123 #45-67' },
-                url_profile_photo: { type: 'string', example: 'http://example.com/photo.jpg' },
+                url_profile_photo: {
+                  type: 'string',
+                  example: 'http://example.com/photo.jpg',
+                },
               },
             },
           },
@@ -218,7 +230,10 @@ export const getAllUsersResponseFailed = {
     type: 'object',
     properties: {
       statusCode: { type: 'number', example: 400 },
-      message: { type: 'string', example: 'Hubo un problema al intentar leer los usuarios.' },
+      message: {
+        type: 'string',
+        example: 'Hubo un problema al intentar leer los usuarios.',
+      },
     },
   },
 };

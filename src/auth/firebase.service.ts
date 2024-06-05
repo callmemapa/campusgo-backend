@@ -2,7 +2,6 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import * as admin from 'firebase-admin';
 import { ReviewDto } from 'src/models/review.dto';
 import { FirebaseModule } from 'src/firebase.module';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 @Injectable()
 export class FirebaseService {
@@ -72,7 +71,8 @@ export class FirebaseService {
       } else if (error.code === 'auth/invalid-id-token') {
         errorMessage = 'ID token is invalid';
       } else if (error.code === 'auth/internal-error') {
-        errorMessage = 'An internal error occurred while verifying the ID token';
+        errorMessage =
+          'An internal error occurred while verifying the ID token';
       }
       console.error('Error verifying token:', error.code, error.message);
       throw new Error(errorMessage);
@@ -166,11 +166,11 @@ export class FirebaseService {
   async getAllUsers(): Promise<object> {
     try {
       const snapshot = await admin.firestore().collection('users').get();
-      const users = snapshot.docs.map(doc => ({
+      const users = snapshot.docs.map((doc) => ({
         id: doc.id,
         data: doc.data(),
       }));
-  
+
       return {
         statusCode: 200,
         message: 'Usuarios recuperados exitosamente.',
@@ -213,11 +213,11 @@ export class FirebaseService {
   async getAllDrivers(): Promise<object> {
     try {
       const snapshot = await admin.firestore().collection('drivers').get();
-      const drivers = snapshot.docs.map(doc => ({
+      const drivers = snapshot.docs.map((doc) => ({
         id: doc.id,
         data: doc.data(),
       }));
-  
+
       return {
         statusCode: 200,
         message: 'Conductores recuperados exitosamente.',
@@ -231,7 +231,7 @@ export class FirebaseService {
       );
     }
   }
-  
+
   async readPassenger(id_passenger: string): Promise<object> {
     try {
       const docRef = admin
@@ -263,11 +263,11 @@ export class FirebaseService {
   async getAllPassengers(): Promise<object> {
     try {
       const snapshot = await admin.firestore().collection('passengers').get();
-      const passengers = snapshot.docs.map(doc => ({
+      const passengers = snapshot.docs.map((doc) => ({
         id: doc.id,
         data: doc.data(),
       }));
-  
+
       return {
         statusCode: 200,
         message: 'Pasajeros recuperados exitosamente.',
@@ -281,7 +281,7 @@ export class FirebaseService {
       );
     }
   }
-  
+
   async updateUser(
     uid: string,
     document_type?: string,
@@ -295,7 +295,7 @@ export class FirebaseService {
   ): Promise<object> {
     try {
       const userRef = admin.firestore().collection('users').doc(uid);
-  
+
       const snapshot = await userRef.get();
       if (!snapshot.exists) {
         throw new HttpException(
@@ -313,9 +313,9 @@ export class FirebaseService {
       if (phone_number) updateData.phone_number = phone_number;
       if (address) updateData.address = address;
       if (url_profile_photo) updateData.url_profile_photo = url_profile_photo;
-  
+
       await userRef.update(updateData);
-  
+
       return {
         statusCode: 200,
         message: 'Usuario actualizado exitosamente.',
@@ -337,7 +337,7 @@ export class FirebaseService {
   ): Promise<object> {
     try {
       const driverRef = admin.firestore().collection('drivers').doc(id_driver);
-  
+
       const snapshot = await driverRef.get();
       if (!snapshot.exists) {
         throw new HttpException(
@@ -345,18 +345,18 @@ export class FirebaseService {
           HttpStatus.NOT_FOUND,
         );
       }
-  
+
       const updateData: any = {};
       if (reviews) updateData.reviews = reviews;
       if (trips_completed) updateData.trips_completed = trips_completed;
       if (id_vehicle) updateData.id_vehicle = id_vehicle;
-  
+
       await driverRef.update(updateData);
-  
+
       return {
         statusCode: 200,
         message: 'Conductor actualizado exitosamente.',
-        data: updateData
+        data: updateData,
       };
     } catch (error) {
       throw new HttpException(
@@ -371,8 +371,11 @@ export class FirebaseService {
     number_of_trips?: number,
   ): Promise<object> {
     try {
-      const passengerRef = admin.firestore().collection('passengers').doc(id_passenger);
-  
+      const passengerRef = admin
+        .firestore()
+        .collection('passengers')
+        .doc(id_passenger);
+
       // Check if the passenger exists
       const snapshot = await passengerRef.get();
       if (!snapshot.exists) {
@@ -381,17 +384,17 @@ export class FirebaseService {
           HttpStatus.NOT_FOUND,
         );
       }
-  
+
       // Update the passenger with the new data
       const updateData: any = {};
       if (number_of_trips) updateData.number_of_trips = number_of_trips;
-  
+
       await passengerRef.update(updateData);
-  
+
       return {
         statusCode: 200,
         message: 'Pasajero actualizado exitosamente.',
-        data: updateData
+        data: updateData,
       };
     } catch (error) {
       throw new HttpException(

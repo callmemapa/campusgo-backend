@@ -80,8 +80,11 @@ export class VehicleService {
     year?: number,
   ): Promise<object> {
     try {
-      const vehicleRef = admin.firestore().collection('vehicles').doc(id_vehicle);
-      
+      const vehicleRef = admin
+        .firestore()
+        .collection('vehicles')
+        .doc(id_vehicle);
+
       // Check if the vehicle exists
       const snapshot = await vehicleRef.get();
       if (!snapshot.exists) {
@@ -105,7 +108,7 @@ export class VehicleService {
       return {
         statusCode: 200,
         message: 'Vehiculo actualizado exitosamente.',
-        data: updateData
+        data: updateData,
       };
     } catch (error) {
       throw new HttpException(
@@ -119,22 +122,22 @@ export class VehicleService {
     try {
       const vehiclesRef = admin.firestore().collection('vehicles');
       const snapshot = await vehiclesRef.get();
-  
+
       if (snapshot.empty) {
         throw new HttpException(
           'No se encontraron vehículos',
           HttpStatus.NOT_FOUND,
         );
       }
-  
+
       const vehicles: Array<object> = [];
-      snapshot.forEach(doc => {
+      snapshot.forEach((doc) => {
         vehicles.push({
           id: doc.id,
           data: doc.data(),
         });
       });
-  
+
       return {
         statusCode: 200,
         message: 'Vehículos recuperados exitosamente.',

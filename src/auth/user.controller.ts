@@ -11,8 +11,7 @@ import {
   updateUserResponse,
   updateUserResponseFailed,
   getAllUsersResponse,
-  getAllUsersResponseFailed
-
+  getAllUsersResponseFailed,
 } from 'src/documentation/signup';
 import { LoginDto } from 'src/models/login.dto';
 
@@ -53,9 +52,7 @@ export class UserController {
   @ApiResponse(signUpResponse)
   @ApiResponse(signUpResponseFailed)
   verifyIdToken(@Body() user: LoginDto): object {
-    console.log(user.idToken)
-    return this.firebaseService.verifyIdToken(user.idToken
-    );
+    return this.firebaseService.verifyIdToken(user.idToken);
   }
 
   @Get('getAllUsers')

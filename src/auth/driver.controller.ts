@@ -1,7 +1,16 @@
-import { Controller, Get, Post, Put, Body, Param, HttpException, HttpStatus  } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Body,
+  Param,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { FirebaseService } from './firebase.service';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { DriverDto} from 'src/models/driver.dto';
+import { DriverDto } from 'src/models/driver.dto';
 import { ReviewDto } from 'src/models/review.dto';
 import {
   driverBody,
@@ -12,7 +21,7 @@ import {
   updateDriverResponse,
   updateDriverResponseFailed,
   getAllDriversResponse,
-  getAllDriversResponseFailed
+  getAllDriversResponseFailed,
 } from 'src/documentation/driver';
 
 @ApiTags('auth')
@@ -52,11 +61,12 @@ export class DriverController {
   @ApiResponse(updateDriverResponseFailed)
   async updateDriver(
     @Param('id_driver') id_driver: string,
-    @Body() updateDriverDto: {
-      reviews?: Array<ReviewDto>,
-      trips_completed?: number,
-      id_vehicle?: string,
-    }
+    @Body()
+    updateDriverDto: {
+      reviews?: Array<ReviewDto>;
+      trips_completed?: number;
+      id_vehicle?: string;
+    },
   ): Promise<object> {
     try {
       return await this.firebaseService.updateDriver(

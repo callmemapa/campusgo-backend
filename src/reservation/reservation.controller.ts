@@ -1,4 +1,13 @@
-import { Controller, Post, Body, Get, Put, HttpStatus, HttpException, Param } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Put,
+  HttpStatus,
+  HttpException,
+  Param,
+} from '@nestjs/common';
 import { ReservationService } from './reservation.service';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ReservationDto } from 'src/models/reservation.dto';
@@ -10,7 +19,7 @@ import {
   updateReservationBody,
   updateReservationResponse,
   updateReservationResponseFailed,
-  getAllReservationsResponse
+  getAllReservationsResponse,
 } from 'src/documentation/reservation';
 
 @ApiTags('reservation')
@@ -69,14 +78,15 @@ export class ReservationController {
   @ApiResponse(updateReservationResponseFailed)
   async updateReservation(
     @Param('id_reservation') id_reservation: string,
-    @Body() updateData: {
-      id_passenger?: string,
-      id_route?: string,
-      payment_method?: string,
-      pick_up_point?: string,
-      reservation_status?: string,
-      fare?: number,
-      seats_to_reserve?: number,
+    @Body()
+    updateData: {
+      id_passenger?: string;
+      id_route?: string;
+      payment_method?: string;
+      pick_up_point?: string;
+      reservation_status?: string;
+      fare?: number;
+      seats_to_reserve?: number;
     },
   ): Promise<object> {
     try {
@@ -98,5 +108,4 @@ export class ReservationController {
       );
     }
   }
-
 }

@@ -61,7 +61,10 @@ export const docGetRoute = {
       data: {
         type: 'object',
         properties: {
-          date: { type: 'string', example: '11 de mayo de 2024, 8:00:00 a.m. UTC-5' },
+          date: {
+            type: 'string',
+            example: '11 de mayo de 2024, 8:00:00 a.m. UTC-5',
+          },
           distance: { type: 'string', example: '13km' },
           origin: { type: 'string', example: 'Lopez pan' },
           destination: { type: 'string', example: 'Universidad del Valle' },
@@ -121,10 +124,16 @@ export const getAllRoutesResponse = {
             data: {
               type: 'object',
               properties: {
-                date: { type: 'string', example: '11 de mayo de 2024, 8:00:00 a.m. UTC-5' },
+                date: {
+                  type: 'string',
+                  example: '11 de mayo de 2024, 8:00:00 a.m. UTC-5',
+                },
                 distance: { type: 'string', example: '13km' },
                 origin: { type: 'string', example: 'Lopez pan' },
-                destination: { type: 'string', example: 'Universidad del Valle' },
+                destination: {
+                  type: 'string',
+                  example: 'Universidad del Valle',
+                },
                 waypoints: {
                   type: 'array',
                   items: { type: 'string', example: 'Autopista suroriental' },
@@ -142,7 +151,10 @@ export const getAllRoutesResponse = {
                     _firestore: {
                       type: 'object',
                       properties: {
-                        projectId: { type: 'string', example: 'campusgo-dd61b' },
+                        projectId: {
+                          type: 'string',
+                          example: 'campusgo-dd61b',
+                        },
                       },
                     },
                     _path: {
@@ -225,7 +237,10 @@ export const updateRouteResponseFailed = {
     type: 'object',
     properties: {
       statusCode: { type: 'number', example: 400 },
-      message: { type: 'string', example: 'Hubo un problema al actualizar la ruta' },
+      message: {
+        type: 'string',
+        example: 'Hubo un problema al actualizar la ruta',
+      },
     },
   },
 };

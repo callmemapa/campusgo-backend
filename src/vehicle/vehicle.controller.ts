@@ -1,4 +1,13 @@
-import { Controller, Post, Put, Body, Get, Param, HttpException, HttpStatus } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Put,
+  Body,
+  Get,
+  Param,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { VehicleService } from './vehicle.service';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { VehicleDto } from 'src/models/vehicle.dto';
@@ -11,7 +20,7 @@ import {
   updateVehicleResponse,
   updateVehicleResponseFailed,
   getAllVehiclesResponse,
-  getAllVehiclesResponseFailed
+  getAllVehiclesResponseFailed,
 } from 'src/documentation/vehicle';
 
 @ApiTags('vehicle')

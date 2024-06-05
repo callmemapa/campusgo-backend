@@ -1,4 +1,13 @@
-import { Controller, Post, Body, Get, Put, Param, HttpException, HttpStatus } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Put,
+  Param,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { FirebaseService } from './firebase.service';
 import { ApiBody, ApiResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { PassengerDto } from 'src/models/passenger.dto';
@@ -11,7 +20,7 @@ import {
   updatePassengerResponse,
   updatePassengerResponseFailed,
   getAllPassengersResponse,
-  getAllPassengersResponseFailed
+  getAllPassengersResponseFailed,
 } from 'src/documentation/passenger';
 
 @ApiTags('auth')
@@ -51,9 +60,10 @@ export class PassengerController {
   @ApiResponse(updatePassengerResponseFailed)
   async updatePassenger(
     @Param('id_passenger') id_passenger: string,
-    @Body() updatePassengerDto: {
-      number_of_trips?: number,
-    }
+    @Body()
+    updatePassengerDto: {
+      number_of_trips?: number;
+    },
   ): Promise<object> {
     try {
       const result = await this.firebaseService.updatePassenger(

@@ -71,7 +71,7 @@ export const updateVehicleBody = {
   type: Object,
   description: 'Datos para actualizar un vehiculo',
   examples: {
-    example:{
+    example: {
       value: {
         id_driver: 'nays8PlHMEp43XGgQkzw',
         color: 'gris',
@@ -82,8 +82,8 @@ export const updateVehicleBody = {
         year: 2015,
       },
       summary: 'Ejemplo de actualización de vehiculo',
-    }
-  }
+    },
+  },
 };
 
 export const updateVehicleResponse = {
@@ -93,14 +93,17 @@ export const updateVehicleResponse = {
     type: 'object',
     properties: {
       statusCode: { type: 'number', example: 200 },
-      id_driver: { type: 'string', example: 'nays8PlHMEp43XGgQkzw'},
+      id_driver: { type: 'string', example: 'nays8PlHMEp43XGgQkzw' },
       color: { type: 'string', example: 'negro' },
       year: { type: 'number', example: 2015 },
       model: { type: 'string', example: 'sail' },
       plate_number: { type: 'string', example: 'ABC123' },
       type_vehicle: { type: 'string', example: 'carro' },
       make: { type: 'string', example: 'chevrolet' },
-      message: { type: 'string', example: 'Vehiculo actualizado exitosamente.' },
+      message: {
+        type: 'string',
+        example: 'Vehiculo actualizado exitosamente.',
+      },
     },
   },
 };
@@ -127,7 +130,10 @@ export const getAllVehiclesResponse = {
     type: 'object',
     properties: {
       statusCode: { type: 'number', example: 200 },
-      message: { type: 'string', example: 'Vehículos recuperados exitosamente.' },
+      message: {
+        type: 'string',
+        example: 'Vehículos recuperados exitosamente.',
+      },
       data: {
         type: 'array',
         items: {
@@ -162,7 +168,7 @@ export const getAllVehiclesResponseFailed = {
       message: {
         type: 'string',
         example: 'Error al intentar leer los vehículos',
-      }
+      },
     },
   },
 };

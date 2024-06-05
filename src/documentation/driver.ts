@@ -86,10 +86,10 @@ export const updateDriverBody = {
       value: {
         reviews: [],
         trips_completed: 3,
-        id_vehicle: "GGGCx3vWBUAchZO8mrKc"
+        id_vehicle: 'GGGCx3vWBUAchZO8mrKc',
       },
       summary: 'Ejemplo de actualización de un conductor nuevo',
-    }
+    },
   },
 };
 
@@ -99,13 +99,15 @@ export const updateDriverResponse = {
   schema: {
     type: 'object',
     properties: {
-      statusCode: { type: 'number', example:200 },
+      statusCode: { type: 'number', example: 200 },
       id_driver: { type: 'string', example: 'Y0U77JC4buP2mAiycwSm' },
-      message: { type: 'string', example: 'Conductor actualizado exitosamente.'},
+      message: {
+        type: 'string',
+        example: 'Conductor actualizado exitosamente.',
+      },
     },
   },
 };
-
 
 export const updateDriverResponseFailed = {
   status: 400,
@@ -113,8 +115,11 @@ export const updateDriverResponseFailed = {
   schema: {
     type: 'object',
     properties: {
-      statusCode: { type: 'number',  example: 400 },
-      message: { type: 'string', example: 'Hubo un problema al actualizar el conductor', },
+      statusCode: { type: 'number', example: 400 },
+      message: {
+        type: 'string',
+        example: 'Hubo un problema al actualizar el conductor',
+      },
     },
   },
 };
@@ -126,7 +131,10 @@ export const getAllDriversResponse = {
     type: 'object',
     properties: {
       statusCode: { type: 'number', example: 200 },
-      message: { type: 'string', example: 'Conductores recuperados exitosamente.' },
+      message: {
+        type: 'string',
+        example: 'Conductores recuperados exitosamente.',
+      },
       data: {
         type: 'array',
         items: {
@@ -143,7 +151,10 @@ export const getAllDriversResponse = {
                     type: 'object',
                     properties: {
                       rating: { type: 'number', example: 5 },
-                      comment: { type: 'string', example: 'Excelente conductor' },
+                      comment: {
+                        type: 'string',
+                        example: 'Excelente conductor',
+                      },
                     },
                   },
                 },
@@ -164,7 +175,10 @@ export const getAllDriversResponseFailed = {
     type: 'object',
     properties: {
       statusCode: { type: 'number', example: 400 },
-      message: { type: 'string', example: 'Hubo un problema al intentar leer los conductores.' }
+      message: {
+        type: 'string',
+        example: 'Hubo un problema al intentar leer los conductores.',
+      },
     },
   },
 };

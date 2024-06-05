@@ -76,7 +76,7 @@ export const updatePassengerResponse = {
     type: 'object',
     properties: {
       statusCode: { type: 'number', example: 200 },
-      number_of_trips: { type: 'number', example: 10},
+      number_of_trips: { type: 'number', example: 10 },
       message: { type: 'string', example: 'Pasajero creado exitosamente.' },
     },
   },
@@ -104,7 +104,10 @@ export const getAllPassengersResponse = {
     type: 'object',
     properties: {
       statusCode: { type: 'number', example: 200 },
-      message: { type: 'string', example: 'Pasajeros recuperados exitosamente.' },
+      message: {
+        type: 'string',
+        example: 'Pasajeros recuperados exitosamente.',
+      },
       data: {
         type: 'array',
         items: {
@@ -131,7 +134,10 @@ export const getAllPassengersResponseFailed = {
     type: 'object',
     properties: {
       statusCode: { type: 'number', example: 400 },
-      message: { type: 'string', example: 'Hubo un problema al intentar leer los pasajeros.' }
+      message: {
+        type: 'string',
+        example: 'Hubo un problema al intentar leer los pasajeros.',
+      },
     },
   },
 };
