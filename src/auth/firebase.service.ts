@@ -143,18 +143,42 @@ export class FirebaseService {
       const docRef = admin.firestore().collection('users').doc(uid);
       const snapshot = await docRef.get();
 
-      if (snapshot.exists) {
-        return {
-          id: snapshot.id,
-          data: snapshot.data(),
-        };
-      } else {
+      if (!snapshot.exists) {
         throw new HttpException(
           'El usuario no fue encontrado',
           HttpStatus.BAD_REQUEST,
         );
       }
+
+      const userData = {
+        id: snapshot.id,
+        data: snapshot.data(),
+      };
+      // Verificar si el usuario es driver o passenger
+      if (userData.data.isDriver) {
+        // Obtener datos del driver
+        const driverRef = admin
+          .firestore()
+          .collection('drivers')
+          .doc(userData.data.id_driver._path.segments[1]);
+        const driverSnapshot = await driverRef.get();
+        if (driverSnapshot.exists) {
+          userData.data.driverData = driverSnapshot.data();
+        }
+      } else {
+        // Obtener datos del passenger
+        const passengerRef = admin
+          .firestore()
+          .collection('passengers')
+          .doc(userData.data.id_passenger._path.segments[1]);
+        const passengerSnapshot = await passengerRef.get();
+        if (passengerSnapshot.exists) {
+          userData.data.passengerData = passengerSnapshot.data();
+        }
+      }
+      return userData;
     } catch (error) {
+      console.log(error);
       throw new HttpException(
         'Error al intentar leer al usuario',
         HttpStatus.BAD_REQUEST,
@@ -162,7 +186,6 @@ export class FirebaseService {
       );
     }
   }
-
   async getAllUsers(): Promise<object> {
     try {
       const snapshot = await admin.firestore().collection('users').get();
